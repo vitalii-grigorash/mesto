@@ -2,7 +2,7 @@
 @import url(./__image/elements__image.css);
 @import url(./__group/elements__group.css);
 @import url(./__place/elements__place.css);
-@import url(./__like-icon/elements__like-icon.css);
+@import url(./__like-button/elements__like-button.css);
 .elements {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -12,14 +12,14 @@
     grid-row-gap: 20px;
     grid-column-gap: 18px;
 }
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 780px) {
     .elements {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
         max-width: 580px; 
     }
 }
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 525px) {
     .elements {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(6, 1fr);
