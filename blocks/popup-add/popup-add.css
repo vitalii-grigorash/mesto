@@ -1,0 +1,21 @@
+@import url(./__container/popup-add__container.css);
+@import url(./__heading/popup-add__heading.css);
+@import url(./__submit-button/popup-add__submit-button.css);
+@import url(./__close-button/popup-add__close-button.css);
+@import url(./__form/popup-add__form.css);
+@import url(./__handlers/popup-add__handlers.css);
+@import url(./__input/popup-add__input.css);
+@import url(./__forms/popup-add__forms.css);
+@import url(./__forms-container/popup-add__forms-container.css);
+.popup-add {
+    display: flex;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .4s, opacity .4s linear;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0, 0, 0, .5);
+}

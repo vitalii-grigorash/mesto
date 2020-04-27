@@ -7,12 +7,18 @@
 @import url(./__input/popup__input.css);
 @import url(./__forms/popup__forms.css);
 @import url(./__forms-container/popup__forms-container.css);
+
 .popup {
-    display: none;
+    display: flex;
     position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .4s, opacity .4s linear;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
     background-color:rgba(0, 0, 0, .5);
 }
+
+
