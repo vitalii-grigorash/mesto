@@ -1,4 +1,4 @@
-.popup_opened {
+.popup__photo_active {
     visibility: visible;
     opacity: 1;
 }
