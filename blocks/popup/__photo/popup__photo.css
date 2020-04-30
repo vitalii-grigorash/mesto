@@ -1,7 +1,4 @@
 .popup__photo {
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility .4s, opacity .4s linear;
     max-width: 75vw;
     max-height: 75vh;
 }

@@ -26,67 +26,56 @@ const initialCards = [
 ];
 
 const popup = document.querySelector('.popup');
+const popupNewCard = document.querySelector('.popup_type_new-card');
+const popupCardOpen = document.querySelector('.popup_type_card-open');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const closeButton = document.querySelector('.popup__close-button');
-const nameInput = document.querySelector('.popup__input_name');
-const jobInput = document.querySelector('.popup__input_job');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__job');
-const formElement = document.querySelector('.popup__forms');
-const elements = document.querySelector('.elements');
-const submitButton = document.querySelector('.popup__submit-button');
-const popupHeading = document.querySelector('.popup__heading');
+const closeButtonNewCard = document.querySelector('.popup__close-button_new-card');
+const closeButtonCardOpen = document.querySelector('.popup__close-button_card-open');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_job');
+const cardNameInput = document.querySelector('.popup__input_type_card-name');
+const cardLinkInput = document.querySelector('.popup__input_type_card-link');
 const popupPhoto = document.querySelector('.popup__photo');
 const popupDescription = document.querySelector('.popup__description');
-const popupContainer = document.querySelector('.popup__container');
+const editFormElement = document.querySelector('.popup__forms');
+const addFormElement = document.querySelector('.popup__forms_new-card');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
+const elements = document.querySelector('.elements');
 
 function openPopupEdit() {
     popup.classList.add('popup_opened');
-    popupContainer.classList.add('popup__container_forms');
-    formElement.classList.remove('popup__forms_none');
-    popupPhoto.src = "";
-    popupHeading.textContent = "Редактировать профиль";
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    submitButton.textContent = "Сохранить";
 }
 
 function openPopupAdd() {
-    popup.classList.add('popup_opened');
-    popupContainer.classList.add('popup__container_forms');
-    formElement.classList.remove('popup__forms_none');
-    popupPhoto.src = "";
-    popupHeading.textContent = "Новое место";
-    nameInput.placeholder = "Название";
-    jobInput.placeholder = "Ссылка на картинку";
-    submitButton.textContent = "Создать";
+    popupNewCard.classList.add('popup_opened');
 }
 
-function removeAll() {
+function closePopupEdit() {
     popup.classList.remove('popup_opened');
-    popupPhoto.classList.remove('popup__photo_active');
-    popupDescription.classList.remove('popup__description_active');
-}
-
-function clearAll() {
     nameInput.value = "";
     jobInput.value = "";
-    nameInput.placeholder = "";
-    jobInput.placeholder = "";
-    popupDescription.textContent = "";
 }
 
-function closePopup() {
-    removeAll();
-    clearAll();
+function closePopupAdd() {
+    popupNewCard.classList.remove('popup_opened');
+    cardNameInput.value = "";
+    cardLinkInput.value = "";
+}
+
+function closePopupCard() {
+    popupCardOpen.classList.remove('popup_opened');
 }
 
 function like(evt) {
   evt.target.classList.toggle('elements__like-button_active');
 }
 
-function addCard(linkInputValue, jobInputValue) {
+function addCard(linkInputValue, nameInputValue) {
         const element = document.createElement('div');
         element.classList.add("elements__element");
         const image = document.createElement('img');
@@ -98,7 +87,7 @@ function addCard(linkInputValue, jobInputValue) {
         group.classList.add("elements__group");
         const place = document.createElement('p');
         place.classList.add("elements__place");
-        place.textContent = jobInputValue;
+        place.textContent = nameInputValue;
         const likeButton = document.createElement('button');
         likeButton.classList.add("elements__like-button");
         
@@ -108,11 +97,7 @@ function addCard(linkInputValue, jobInputValue) {
         }
         
         function openPopupImage() {
-            popup.classList.add('popup_opened');
-            popupPhoto.classList.add('popup__photo_active');
-            popupDescription.classList.add('popup__description_active');
-            popupContainer.classList.remove('popup__container_forms');
-            formElement.classList.add('popup__forms_none');
+            popupCardOpen.classList.add('popup_opened');
             popupPhoto.src = image.src;
             popupDescription.textContent = place.textContent;
         }
@@ -126,23 +111,27 @@ function addCard(linkInputValue, jobInputValue) {
         elements.prepend(element);
     }
 
-function formSubmitHandler (evt) {
-  evt.preventDefault();
-
-  if (submitButton.textContent === "Сохранить") {
+function editFormSubmitHandler (evt) {
+    evt.preventDefault();
     profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value; 
-  } else {
-    addCard(jobInput.value, nameInput.value);
-  }
-
-  closePopup();
+    profileJob.textContent = jobInput.value;
+    closePopupEdit();
 }
 
+function addFormSubmitHandler (evt) {
+    evt.preventDefault();
+    addCard(cardLinkInput.value, cardNameInput.value); 
+    closePopupAdd();
+}
+
+
 editButton.addEventListener('click', openPopupEdit);
+closeButton.addEventListener('click', closePopupEdit);
 addButton.addEventListener('click', openPopupAdd);
-closeButton.addEventListener('click', closePopup);
-formElement.addEventListener('submit', formSubmitHandler);
+closeButtonNewCard.addEventListener('click', closePopupAdd);
+closeButtonCardOpen.addEventListener('click', closePopupCard);
+addFormElement.addEventListener('submit', addFormSubmitHandler);
+editFormElement.addEventListener('submit', editFormSubmitHandler);
 
 for (let i = 0; i < initialCards.length; i++) {
     addCard(initialCards[i].link, initialCards[i].name);

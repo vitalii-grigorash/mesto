@@ -1,5 +1,7 @@
-@import url(./_job/popup__input_job.css);
-@import url(./_name/popup__input_name.css);
+@import url(./_type/_job/popup__input_type_job.css);
+@import url(./_type/_name/popup__input_type_name.css);
+@import url(./_type/_card-name/popup__input_type_card-name.css);
+@import url(./_type/_card-link/popup__input_type_card-link.css);
 .popup__input {
     border: 0;
     font-weight: normal;

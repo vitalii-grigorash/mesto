@@ -59,19 +59,19 @@
 
                 <form class="popup__forms">
 
-                    <h2 class="popup__heading"></h2>
+                    <h2 class="popup__heading">Редактировать профиль</h2>
 
                     <div class="popup__forms-container">
 
                         <div class="popup__form">
 
-                            <input type="text" value="" class="popup__input popup__input_name" name="name">
+                            <input type="text" value="" class="popup__input popup__input_type_name" name="name">
 
                         </div>
 
                         <div class="popup__form">
 
-                            <input type="text" value="" class="popup__input popup__input_job" name="job">
+                            <input type="text" value="" class="popup__input popup__input_type_job" name="job">
 
                         </div>
 
@@ -79,11 +79,59 @@
 
                     <div class="popup__handlers">
 
-                        <button class="popup__submit-button" type="submit"></button>
+                        <button class="popup__submit-button" type="submit">Сохранить</button>
 
                     </div>
 
                 </form>
+
+            </div>
+
+        </section>
+
+        <section class="popup popup_type_new-card">
+
+            <div class="popup__container">
+
+                <button class="popup__close-button popup__close-button_new-card" type="button"></button>
+
+                <form class="popup__forms popup__forms_new-card">
+
+                    <h2 class="popup__heading">Новое место</h2>
+
+                    <div class="popup__forms-container">
+
+                        <div class="popup__form">
+
+                            <input type="text" placeholder="Название" class="popup__input popup__input_type_card-name" name="card-name">
+
+                        </div>
+
+                        <div class="popup__form">
+
+                            <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_card-link" name="card-link">
+
+                        </div>
+
+                    </div>
+
+                    <div class="popup__handlers">
+
+                        <button class="popup__submit-button" type="submit">Создать</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <section class="popup popup_type_card-open">
+
+            <div class="popup__container popup__container_card-open">
+
+                <button class="popup__close-button popup__close-button_card-open" type="button"></button>
 
                 <img class="popup__photo" src="" alt="Фотография">
 
