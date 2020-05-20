@@ -1,7 +1,3 @@
-@import url(./_type/_job/popup__input_type_job.css);
-@import url(./_type/_name/popup__input_type_name.css);
-@import url(./_type/_card-name/popup__input_type_card-name.css);
-@import url(./_type/_card-link/popup__input_type_card-link.css);
 .popup__input {
     border: 0;
     font-weight: normal;
@@ -9,8 +5,10 @@
     line-height: 1.2;
     width: 100%;
     height: 40px;
+    margin: 0;
     border-bottom: 1px solid #bcbcc4;
 }
+
 @media screen and (max-width: 460px) {
     .popup__input {
         max-width: 300px;

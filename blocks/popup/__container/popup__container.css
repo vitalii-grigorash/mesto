@@ -6,12 +6,12 @@
     color: #000000;
     padding: 36px;
 }
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 600px) {
     .popup__container {
         padding: 26px;
     }
 }
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 570px) {
     .popup__container {
         padding: 16px;
     }

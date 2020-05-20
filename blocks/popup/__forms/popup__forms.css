@@ -1,3 +1,5 @@
 .popup__forms {
-    min-width: 358px;
+    display: flex;
+    flex-direction: column;
+    width: 358px;
 }
