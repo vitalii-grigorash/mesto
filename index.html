@@ -89,15 +89,15 @@
 
                     <h2 class="popup__heading">Новое место</h2>
 
-                    <input id="card-name-input" type="text" placeholder="Название" class="popup__input popup__input_card-name" required name="card-name" minlength="1" maxlength="30">
+                    <input id="card-name-input" type="text" placeholder="Название" class="popup__input popup__input_card-name" required name="name" minlength="1" maxlength="30">
                     <span id="card-name-input-error" class="popup__input_name-error"></span>
 
-                    <input id="card-link-input" type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_card-link" required name="card-link">
+                    <input id="card-link-input" type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_card-link" required name="link">
                     <span id="card-link-input-error" class="popup__input_name-error"></span>
 
                     <div class="popup__handlers">
 
-                        <button class="popup__submit-button popup__submit-button_new-card" type="submit" disabled>Создать</button>
+                        <button class="popup__submit-button popup__submit-button_new-card"  type="submit">Создать</button>
 
                     </div>
 
@@ -120,6 +120,17 @@
             </div>
 
         </section>
+
+        <template id="card-template">
+            <div class="elements__element">
+                <img class="elements__image" src="" alt="">
+                <button class="elements__trash-button"></button>
+                <div class="elements__group">
+                    <p class="elements__place"></p>
+                    <button class="elements__like-button"></button>
+                </div>
+            </div>
+          </template>
 
         <script src="scripts/script.js"></script>
         <script src="scripts/validate.js"></script>
