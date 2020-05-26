@@ -26,11 +26,8 @@ const initialCards = [
 ];
 
 const popup = document.querySelector('.popup');
-const popupContainer = document.querySelector('.popup__container');
 const popupNewCard = document.querySelector('.popup_type_new-card');
-const popupNewCardContainer = document.querySelector('.popup__container_new-card');
 const popupCardOpen = document.querySelector('.popup_type_card-open');
-const popupCardOpenContainer = document.querySelector('.popup__container_card-open');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const closeButton = document.querySelector('.popup__close-button');
@@ -96,14 +93,6 @@ function openPopupAdd() {
     openPopup(popupNewCard);
 };
 
-function loadCards (cards) {
-    return cards.map((card) => addCard(card));
-};
-
-function renderCards(cards) {
-    elements.prepend(...cards);
-};
-
 function openPopupImage(event) {
     const cardOpen = event.target.closest('.elements__element');
     const title = cardOpen.querySelector('.elements__place');
@@ -120,19 +109,10 @@ function trash (evt) {
     evt.target.closest('.elements__element').remove();
 };
 
-function editFormSubmitHandler (evt) {
+function editFormSubmitHandler () {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closePopup(popup);
-};
-
-function addFormSubmitHandler (evt) {
-    const newCard = addCard({
-        name: cardNameInput.value,
-        link: cardLinkInput.value,
-    })
-    renderCards([newCard]);
-    closePopup(popupNewCard);
 };
 
 function addCard(item) {
@@ -150,11 +130,28 @@ function addCard(item) {
     return cardElement;
 };
 
+function loadCards (cards) {
+    return cards.map((card) => addCard(card));
+};
+
+function renderCards(cards) {
+    elements.prepend(...cards);
+};
+
+function addFormSubmitHandler () {
+    const newCard = addCard({
+        name: cardNameInput.value,
+        link: cardLinkInput.value,
+    })
+    renderCards([newCard]);
+    closePopup(popupNewCard);
+};
+
 editButton.addEventListener('click', openPopupEdit);
-closeButton.addEventListener('click', closePopup.bind(null, popup));
+closeButton.addEventListener('click', () => closePopup(popup));
 addButton.addEventListener('click', openPopupAdd);
-closeButtonNewCard.addEventListener('click', closePopup.bind(null, popupNewCard));
-closeButtonCardOpen.addEventListener('click', closePopup.bind(null, popupCardOpen));
+closeButtonNewCard.addEventListener('click', () => closePopup(popupNewCard));
+closeButtonCardOpen.addEventListener('click', () => closePopup(popupCardOpen));
 addFormElement.addEventListener('submit', addFormSubmitHandler);
 editFormElement.addEventListener('submit', editFormSubmitHandler);
 
