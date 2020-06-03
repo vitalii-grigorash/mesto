@@ -10,23 +10,32 @@ export class FormValidator {
 
   _showInputError (formElement, inputElement, errorMessage) { 
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`); 
-    inputElement.classList.add(this._inputErrorClass); 
+    inputElement.classList.add(this._inputErrorClass);
+    errorElement.classList.add(this._errorClass);  
     errorElement.textContent = errorMessage; 
-    errorElement.classList.add(this._errorClass); 
   }; 
     
-  hideInputError (formElement, inputElement) { 
+  _hideInputError (formElement, inputElement) { 
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`); 
     inputElement.classList.remove(this._inputErrorClass); 
-    errorElement.textContent = ''; 
-    errorElement.classList.remove(this._errorClass); 
-  }; 
+    errorElement.classList.remove(this._errorClass);
+    errorElement.textContent = '';  
+  };
+
+  _clearAllErrors () {
+    const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    inputList.forEach(inputElement => {
+      if (inputElement.classList.contains(this._inputErrorClass)) {
+      this._hideInputError(this._form, inputElement);
+      }
+    })
+  }
     
   _isValid (formElement, inputElement) { 
     if (!inputElement.validity.valid) { 
       this._showInputError(formElement, inputElement, inputElement.validationMessage); 
     } else { 
-      this.hideInputError(formElement, inputElement); 
+      this._hideInputError(formElement, inputElement); 
     } 
   }; 
     
@@ -62,6 +71,7 @@ export class FormValidator {
     this._form.addEventListener('submit', (evt) => { 
       evt.preventDefault(); 
     }); 
-    this._setEventListeners(this._form);  
+    this._setEventListeners(this._form);
+    this._clearAllErrors();
   }
 }

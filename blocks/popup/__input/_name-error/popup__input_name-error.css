@@ -1,5 +1,5 @@
 .popup__input_name-error {
-    visibility: hidden;
+    opacity: 0;
     font-weight: normal;
     font-size: 0.75rem;
     line-height: 1.25;

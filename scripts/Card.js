@@ -36,7 +36,8 @@ export class Card {
     }
 
     _trash () {
-        this._element.querySelector('.elements__trash-button').closest('.elements__element').remove();
+        this._element.remove();
+        this._element = null;
     }
 
     _openPopupImage(event) {

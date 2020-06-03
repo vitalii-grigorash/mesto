@@ -56,20 +56,6 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const elements = document.querySelector('.elements');
 
-function validate (form) {
-    const formValidate = new FormValidator(setting, form);
-    const enable = formValidate.enableValidation();
-    return enable;
-}
-
-function clearAllErrors(form) {
-    const formValidate = new FormValidator(setting, form);
-    const inputList = Array.from(form.querySelectorAll('.popup__input'));
-    inputList.forEach(inputElement => {
-        formValidate.hideInputError(form, inputElement);
-    });
-};
-
 function escapeListener (evt) {
     if (evt.keyCode === 27) {
         const popupOpened = document.querySelector('.popup_opened');
@@ -98,16 +84,16 @@ function closePopup(popupElement) {
 function openPopupEdit() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    validate(editFormElement);
-    clearAllErrors(editFormElement);
+    const formValidate = new FormValidator(setting, editFormElement);
+    formValidate.enableValidation();
     openPopup(popup);
 };
 
 function openPopupAdd() {
     cardNameInput.value = "";
     cardLinkInput.value = "";
-    validate(addFormElement);
-    clearAllErrors(addFormElement);
+    const formValidate = new FormValidator(setting, addFormElement);
+    formValidate.enableValidation();
     openPopup(popupNewCard);
 };
 
