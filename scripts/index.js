@@ -56,7 +56,25 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const elements = document.querySelector('.elements');
 const editFormValidate = new FormValidator(setting, editFormElement);
-const addFormValidate = new FormValidator(setting,  addFormElement);
+const addFormValidate = new FormValidator(setting, addFormElement);
+
+// Делаем кнопку Submit активной/неактивной
+// при открытии Popup, что бы не вызывать внутри функции
+// enableValidation(), которая в свою очередь навешивает лишние обработчики.
+
+function submitButton (formElement) {
+    const inputList = Array.from(formElement.querySelectorAll('.popup__input')); 
+    const button = formElement.querySelector('.popup__submit-button');
+    inputList.forEach((inputElement) => {
+        if (inputElement.value === '') {
+            button.classList.add('popup__submit-button_disabled');
+            button.setAttribute('disabled', true);
+        } else {
+            button.classList.remove('popup__submit-button_disabled');
+            button.removeAttribute('disabled');
+        }
+    })
+};
 
 function escapeListener (evt) {
     if (evt.keyCode === 27) {
@@ -86,15 +104,17 @@ function closePopup(popupElement) {
 function openPopupEdit() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    editFormValidate.enableValidation();
     openPopup(popup);
+    submitButton(editFormElement);
+    editFormValidate.clearAllErrors();
 };
 
 function openPopupAdd() {
     cardNameInput.value = "";
     cardLinkInput.value = "";
-    addFormValidate.enableValidation();
     openPopup(popupNewCard);
+    submitButton(addFormElement);
+    addFormValidate.clearAllErrors();
 };
 
 function renderCards (cards) {
@@ -128,5 +148,8 @@ closeButtonNewCard.addEventListener('click', () => closePopup(popupNewCard));
 closeButtonCardOpen.addEventListener('click', () => closePopup(popupCardOpen));
 addFormElement.addEventListener('submit', addFormSubmitHandler);
 editFormElement.addEventListener('submit', editFormSubmitHandler);
+
+editFormValidate.enableValidation();
+addFormValidate.enableValidation();
 
 renderCards(initialCards);

@@ -22,7 +22,11 @@ export class FormValidator {
     errorElement.textContent = '';  
   };
 
-  _clearAllErrors () {
+  // Взял на себя смелость сделать второй публичный метод, для отчистки ошибок в инпутах, 
+  // что бы не дублировать код и не вызывать enableValidation(); при открытии формы,
+  // и не навешивать лишние обработчики, которые влияют на утечку памяти.
+
+  clearAllErrors () {
     const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     inputList.forEach(inputElement => {
       if (inputElement.classList.contains(this._inputErrorClass)) {
@@ -31,7 +35,7 @@ export class FormValidator {
     })
   }
     
-  _isValid (formElement, inputElement) { 
+  _isValid (formElement, inputElement) {
     if (!inputElement.validity.valid) { 
       this._showInputError(formElement, inputElement, inputElement.validationMessage); 
     } else { 
@@ -62,9 +66,9 @@ export class FormValidator {
     inputList.forEach((inputElement) => { 
       inputElement.addEventListener('input', () => { 
         this._isValid(formElement, inputElement); 
-        this._toggleButtonState(inputList, buttonElement); 
+        this._toggleButtonState(inputList, buttonElement);
       });
-    }); 
+    });
   }; 
     
   enableValidation () { 
@@ -72,6 +76,5 @@ export class FormValidator {
       evt.preventDefault(); 
     }); 
     this._setEventListeners(this._form);
-    this._clearAllErrors();
-  }
+  };
 }
