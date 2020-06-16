@@ -1,7 +1,0 @@
-.popup__close-button_card-open {
-}
-@media screen and (max-width: 500px) {
-    .popup__close-button_card-open {
-        background-size: 35px;
-    }
-}
