@@ -6,33 +6,25 @@ import { Card } from '../components/Card.js';
 import { popupWithImage, userInfo, popupEdit, popupAdd,
 addFormValidate, editFormValidate } from '../pages/index.js';
 
-function submitButton (formElement) {
+function submitButton (formElement, formValidate) {
     const inputList = Array.from(formElement.querySelectorAll('.popup__input')); 
     const button = formElement.querySelector('.popup__submit-button');
-    inputList.forEach((inputElement) => {
-        if (inputElement.value === '') {
-            button.classList.add('popup__submit-button_disabled');
-            button.setAttribute('disabled', true);
-        } else {
-            button.classList.remove('popup__submit-button_disabled');
-            button.removeAttribute('disabled');
-        }
-    })
+    formValidate.toggleButtonState(inputList, button);
 };
 
 export function openPopupEdit() {
     nameInput.value = userInfo.getUserInfo().name;
     jobInput.value = userInfo.getUserInfo().job;
+    submitButton(editFormElement, editFormValidate);
     popupEdit.open();
-    submitButton(editFormElement);
     editFormValidate.clearAllErrors();
 };
 
 export function openPopupAdd() {
     cardNameInput.value = "";
     cardLinkInput.value = "";
+    submitButton(addFormElement, addFormValidate);
     popupAdd.open();
-    submitButton(addFormElement);
     addFormValidate.clearAllErrors();
 };
 
@@ -42,11 +34,13 @@ export function editFormSubmitHandler () {
 };
 
 export function addFormSubmitHandler () {
-    const card = new Card({
-        name: cardNameInput.value, 
-        link: cardLinkInput.value,
+    const card = new Card({ 
+        name: cardNameInput.value,  
+        link: cardLinkInput.value, 
     },'.card-template', popupWithImage)
     const cardElement = card.generateCard();
     elements.prepend(cardElement);
     popupAdd.close();
 };
+
+

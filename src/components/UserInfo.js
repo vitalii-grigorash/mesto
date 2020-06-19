@@ -1,7 +1,5 @@
-import { profileName, profileJob } from '../utils/constants.js'
-
 export class UserInfo {
-    constructor (nameInput, jobInput) {
+    constructor (nameInput, jobInput, profileName, profileJob) {
         this._inputName = nameInput;
         this._inputJob = jobInput;
         this._elementName = profileName;

@@ -4,7 +4,8 @@ export class Popup {
     };
 
     _handleEscClose (evt) {
-        if (evt.keyCode === 27) {
+        const escKey = (evt.key === "Escape");
+        if (escKey) {
             const popupOpened = document.querySelector('.popup_opened');
             popupOpened.classList.remove('popup_opened');
         }
@@ -12,14 +13,20 @@ export class Popup {
     
     _handleOverlayClose (evt) {
         if ((evt.target).classList.contains('popup_opened')) {
-            (evt.target).classList.remove('popup_opened');
+            (evt.target).classList.remove('popup_opened');   
         }
     };
 
     _setEventListeners () {
         this._popupElement.querySelector('.popup__close-button').addEventListener('click', () => this.close());
         document.addEventListener('keyup', this._handleEscClose);
-        document.addEventListener('mousedown', this._handleOverlayClose);
+        this._popupElement.addEventListener('mousedown', this._handleOverlayClose);
+    }
+
+    _removeAllListeners () {
+        document.removeEventListener('keyup', this._handleEscClose);
+        this._popupElement.querySelector('.popup__close-button').removeEventListener('click', () => this.close());
+        this._popupElement.removeEventListener('mousedown', this._handleOverlayClose);
     }
     
     open() {
@@ -29,7 +36,6 @@ export class Popup {
     
     close() {
         this._popupElement.classList.remove('popup_opened');
-        document.removeEventListener('keyup', this._handleEscClose);
-        document.removeEventListener('mousedown', this._handleOverlayClose);
+        this._removeAllListeners();
     };
 }
