@@ -26,7 +26,7 @@ export class Card {
         });
 
         this._element.querySelector('.elements__image').addEventListener('click', () => {
-            this._handleCardClick.open(this._element);
+            this._handleCardClick.open(this._name, this._link);
         });
     }
 

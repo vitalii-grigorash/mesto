@@ -3,39 +3,40 @@ export class Popup {
         this._popupElement = popupElement;
     };
 
-    _handleEscClose (evt) {
-        const escKey = (evt.key === "Escape");
-        if (escKey) {
-            const popupOpened = document.querySelector('.popup_opened');
-            popupOpened.classList.remove('popup_opened');
-        }
-    };
-    
-    _handleOverlayClose (evt) {
-        if ((evt.target).classList.contains('popup_opened')) {
-            (evt.target).classList.remove('popup_opened');   
-        }
-    };
+    _handleEscClose () {
+        document.addEventListener('keyup', (evt) => {
+            const escKeyCode = (evt.key === 'Escape');
+            if (escKeyCode) {
+                this.close();
+            }
+        }); 
+    }
+
+    _handleOverlayClose () {
+        this._popupElement.addEventListener('mousedown', (evt) => {
+            if ((evt.target).classList.contains('popup_opened')) {
+                this.close();  
+            }
+        });
+    }
+
+    _handleCloseButton () {
+        const closeButton = this._popupElement.querySelector('.popup__close-button');
+        closeButton.addEventListener('click', () => this.close());
+    }
 
     _setEventListeners () {
-        this._popupElement.querySelector('.popup__close-button').addEventListener('click', () => this.close());
-        document.addEventListener('keyup', this._handleEscClose);
-        this._popupElement.addEventListener('mousedown', this._handleOverlayClose);
-    }
-
-    _removeAllListeners () {
-        document.removeEventListener('keyup', this._handleEscClose);
-        this._popupElement.querySelector('.popup__close-button').removeEventListener('click', () => this.close());
-        this._popupElement.removeEventListener('mousedown', this._handleOverlayClose);
+        this._handleEscClose();
+        this._handleOverlayClose();
+        this._handleCloseButton();
     }
     
-    open() {
+    open () {
         this._popupElement.classList.add('popup_opened');
         this._setEventListeners();
     };
     
-    close() {
+    close () {
         this._popupElement.classList.remove('popup_opened');
-        this._removeAllListeners();
     };
 }

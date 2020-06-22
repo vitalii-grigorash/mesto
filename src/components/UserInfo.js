@@ -1,21 +1,21 @@
 export class UserInfo {
-    constructor (nameInput, jobInput, profileName, profileJob) {
-        this._inputName = nameInput;
-        this._inputJob = jobInput;
+    constructor ({profileName, profileJob}) {
         this._elementName = profileName;
         this._elementJob = profileJob;
     }
 
     getUserInfo () {
-        return {
+
+        this._formValues = {
             name: this._elementName.textContent,
             job: this._elementJob.textContent
-        }
-        
+        };
+
+        return this._formValues;
     }
 
-    setUserInfo () {
-        this._elementName.textContent = this._inputName.value;
-        this._elementJob.textContent =  this._inputJob.value;
+    setUserInfo (name, job) {
+        this._elementName.textContent = name.value;
+        this._elementJob.textContent = job.value;
     }
 }
