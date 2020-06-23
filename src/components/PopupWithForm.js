@@ -19,16 +19,19 @@ export class PopupWithForm extends Popup {
         return this._formValues;
     }
 
-    _handleSubmitButton () {
-        this._formSelector.addEventListener('submit', () => {
-            this._handleFormSubmit(this._getInputValues());
-            this.close();
-        });
+    _handleSubmitButton = () => {
+        this._handleFormSubmit(this._getInputValues());
+        this.close();
     }
-     
-    _setEventListeners() {
+
+    _setEventListeners () {
         super._setEventListeners();
-        this._handleSubmitButton();
+        this._formSelector.addEventListener('submit', this._handleSubmitButton);
+    }
+
+    _close () {
+        super.close();
+        this._formSelector.removeEventListener('submit', this._handleSubmitButton);
     }
 }
 

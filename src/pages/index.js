@@ -1,7 +1,8 @@
 import { openPopupEdit, openPopupAdd } from '../utils/utils.js';
 import { editButton, addButton, popupCardOpen, popupNewCard,
 addFormElement, popup, editFormElement, nameInput, 
-jobInput, profileName, profileJob, setting, initialCards, element, elements } from '../utils/constants.js';
+jobInput, profileName, profileJob, setting, initialCards,
+element, elements, popupPhoto, popupDescription } from '../utils/constants.js';
 import { FormValidator } from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import { Card } from '../components/Card.js';
@@ -10,7 +11,7 @@ import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import './index.css';
 
-export const popupWithImage = new PopupWithImage(popupCardOpen);
+export const popupWithImage = new PopupWithImage(popupCardOpen, popupPhoto, popupDescription);
 export const editFormValidate = new FormValidator(setting, editFormElement);
 export const addFormValidate = new FormValidator(setting, addFormElement);
 export const userInfo = new UserInfo({profileName, profileJob});
