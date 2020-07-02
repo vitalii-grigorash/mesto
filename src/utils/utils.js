@@ -1,7 +1,7 @@
 import { editFormElement, cardNameInput, cardLinkInput, addFormElement,
-nameInput, jobInput } from './constants.js';
+nameInput, jobInput, editAvatarFormElement, avatarInput } from './constants.js';
 
-import { popupEdit, popupAdd,
+import { popupEdit, popupAdd, popupEditAvatar, editAvatarFormValidate,
 addFormValidate, editFormValidate, userInfo } from '../pages/index.js';
 
 function submitButton (formElement, formValidate) {
@@ -25,3 +25,10 @@ export function openPopupAdd() {
     addFormValidate.clearAllErrors();
     popupAdd.open();
 };
+
+export function openPopupEditAvatar () {
+    avatarInput.value = "";
+    submitButton(editAvatarFormElement, editAvatarFormValidate);
+    editAvatarFormValidate.clearAllErrors();
+    popupEditAvatar.open();
+}

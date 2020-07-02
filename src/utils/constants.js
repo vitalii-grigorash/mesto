@@ -1,30 +1,3 @@
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 export const setting = {
     inputSelector: '.popup__input',
     inputErrorClass: 'popup__input_error',
@@ -36,16 +9,22 @@ export const setting = {
 export const popup = document.querySelector('.popup');
 export const popupNewCard = document.querySelector('.popup_type_new-card');
 export const popupCardOpen = document.querySelector('.popup_type_card-open'); 
+export const popupCardRemove = document.querySelector('.popup_type_card-remove');
+export const popupAvatarEdit = document.querySelector('.popup_type_avatar-edit'); 
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
+export const avatarEditButton = document.querySelector('.profile__overlay');
 export const nameInput = document.querySelector('.popup__input_name');
 export const jobInput = document.querySelector('.popup__input_job');
 export const cardNameInput = document.querySelector('.popup__input_card-name');
 export const cardLinkInput = document.querySelector('.popup__input_card-link');
+export const avatarInput = document.querySelector('.popup__input_avatar-edit');
+export const avatarProfile = document.querySelector('.profile__avatar');
 export const popupPhoto = document.querySelector('.popup__photo'); 
 export const popupDescription = document.querySelector('.popup__description'); 
 export const editFormElement = document.querySelector('.popup__forms');
 export const addFormElement = document.querySelector('.popup__forms_new-card');
+export const editAvatarFormElement = document.querySelector('.popup__forms_avatar-edit');
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__job');
 export const elements = document.querySelector('.elements');

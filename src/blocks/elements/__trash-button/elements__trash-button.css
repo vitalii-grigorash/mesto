@@ -1,4 +1,5 @@
 .elements__trash-button {
+    visibility: hidden;
     background-image: url(../../../images/svg/Trash.svg);
     position: absolute;
     top: 18px;

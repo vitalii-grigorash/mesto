@@ -24,5 +24,12 @@ export class PopupWithForm extends Popup {
         this._handleFormSubmit(this._getInputValues());
         this.close();
     }
-}
 
+    renderLoading (isLoading) {
+        if (isLoading) {
+            this._popupElement.querySelector('.popup__submit-button').textContent = 'Загрузка...';   
+        } else {
+            this._popupElement.querySelector('.popup__submit-button').textContent = 'Сохранить';
+        }
+    }
+}
