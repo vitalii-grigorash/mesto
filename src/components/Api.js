@@ -1,14 +1,12 @@
 export class Api {
     constructor(data) {
         this._baseUrl = data.baseUrl;
-        this._authorization = data.headers.authorization;
+        this._headers = data.headers;
     }
 
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
-            headers: {
-                authorization: this._authorization
-            }
+            headers: this._headers
         })
         .then(this._returnErrorResponse)
     }
@@ -17,25 +15,20 @@ export class Api {
         if (res.ok) {
           return res.json();
         }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        Promise.reject(new Error(`Ошибка: ${res.status}`));
     }
 
     getUserInfo () {
         return fetch(`${this._baseUrl}/users/me`, {
-            headers: {
-                authorization: this._authorization
-            }
+            headers: this._headers
         })
         .then(this._returnErrorResponse)
     }
 
-    userInfo (formData) {
+    setUserInfo (formData) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
-            headers: {
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: formData.name,
                 about: formData.job
@@ -47,10 +40,7 @@ export class Api {
     setAvatar (formData) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
-            headers: {
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 avatar: formData.link
             })
@@ -58,13 +48,10 @@ export class Api {
         .then(this._returnErrorResponse)
     }
 
-    setCard (formData) {
+    addCard (formData) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
-            headers: {
-                authorization: this._authorization,
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify({
                 name: formData.name,
                 link: formData.link,
@@ -76,29 +63,23 @@ export class Api {
     removeCard (cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
-            headers: {
-                authorization: this._authorization
-            }
+            headers: this._headers
         })
         .then(this._returnErrorResponse)
     }
 
-    likeAdd (cardId) {
+    addLike (cardId) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             method: 'PUT',
-            headers: {
-                authorization: this._authorization
-            }
+            headers: this._headers
         })  
         .then(this._returnErrorResponse) 
     }
 
-    likeRemove (cardId) {
+    removeLike (cardId) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
             method: 'DELETE',
-            headers: {
-                authorization: this._authorization
-            }
+            headers: this._headers
         })
         .then(this._returnErrorResponse)
     }

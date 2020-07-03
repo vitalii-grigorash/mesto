@@ -1,13 +1,12 @@
-import { api } from '../pages/index.js';
-
 export class Card {
-    constructor (data, cardSelector, handleCardClick, cardRemove) {
+    constructor (data, api, handleCardClick, cardRemove, cardSelector) {
         this._name = data.name;
         this._link = data.link;
         this._data = data;
-        this._cardSelector = cardSelector;
+        this._api = api;
         this._handleCardClick = handleCardClick;
         this._cardRemove = cardRemove;
+        this._cardSelector = cardSelector;
         this._removeButton = document.querySelector('.popup__submit-button_card-remove');
     };
        
@@ -36,20 +35,35 @@ export class Card {
         const likeCount = this._element.querySelector('.elements__like-count');
         likeButton.classList.toggle('elements__like-button_active');
         if (likeButton.classList.contains('elements__like-button_active')) {
-            api.likeAdd(this._data._id); 
-            likeCount.textContent = (this._data.likes.length + 1);
+            this._api.addLike(this._data._id)
+            .then (() => {
+                likeCount.textContent = (this._data.likes.length + 1);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
         } else {
-            api.likeRemove(this._data._id);
-            likeCount.textContent = (likeCount.textContent - 1);   
+            this._api.removeLike(this._data._id)
+            .then (() => {
+                likeCount.textContent = (likeCount.textContent - 1);
+            })
+            .catch((error) => {
+                console.error(error);
+            });  
         }
     }
 
     _removeElement = () => {
-        this._element.remove();
-        this._element = null;
-        this._cardRemove.close();
-        api.removeCard(this._data._id);
-        this._removeButton.removeEventListener('click', this._removeElement);
+        this._api.removeCard(this._data._id)
+        .then (() => {
+            this._element.remove();
+            this._element = null;
+            this._cardRemove.close();
+            this._removeButton.removeEventListener('click', this._removeElement);
+        })
+        .catch((error) => {
+            console.error(error);
+        }); 
     }
 
     _trash () {
