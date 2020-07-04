@@ -35,5 +35,4 @@ export const addFormElement = document.querySelector('.popup__forms_new-card');
 export const editAvatarFormElement = document.querySelector('.popup__forms_avatar-edit');
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__job');
-export const elements = document.querySelector('.elements');
 export const element = '.elements';
