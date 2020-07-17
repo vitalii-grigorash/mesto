@@ -1,8 +1,0 @@
-.popup__submit-button_card-remove {
-    margin-top: 0;
-}
-@media screen and (max-width: 360px) {
-    .popup__submit-button_card-remove {
-        max-width: 250px;
-    }
-}
