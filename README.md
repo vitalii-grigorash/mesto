@@ -31,7 +31,7 @@ Flexbox-вёрстка <br/>
 Использование JavaScript для внесения изменений в DOM <br/>
 Использование JavaScript для валидации форм <br/>
 ООП <br/>
-Webpack <br/>
+Babel <br/>
 API <br/>
 
 ----
