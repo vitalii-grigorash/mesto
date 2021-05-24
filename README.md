@@ -21,7 +21,7 @@
 ## Технологии
 HTML <br/>
 CSS <br/>
-Native JavaScript <br/>
+JavaScript <br/>
 Webpack <br/>
 Grid Layout <br/>
 Flexbox-вёрстка <br/>
